@@ -1,0 +1,75 @@
+Terraform cloud
+---------------------------------------
+
+log on the app.terraform.io
+1)create the organization
+2)create the workspaces(vcs)
+3)create the registration of oauth appilication in github(developers settings)
+4)generate the client secret
+client secret: xxxxxxxxxxxxxxxxxxx
+
+5)create the module wise private repositories in github and we need to publish 
+the modules in private registry of terraform cloud 
+with tags,The registry uses tags to identify module versions.(without tags it 
+cannot publish the modules  taking into changes can be done in the future also)
+
+ex::
+------------
+repoName->terraform-aws-devops-compute
+git remote add origin https://github.com/naresh9000/terraform-aws-devops-compute.git
+git tag 1.0.0
+git push --tags
+
+after publishing we get the below response ,we will be using this in modules terrform code
+
+module "devops-compute" {
+  source  = "app.terraform.io/naresh-devops-2024/devops-compute/aws"
+  version = "1.0.0"
+  # insert required variables here
+}
+------------
+repoName->terraform-aws-devops-network
+git remote add origin https://github.com/naresh9000/terraform-aws-devops-network.git
+git tag 1.0.0
+git push --tags
+------
+repoName->terraform-aws-devops-elb
+git remote add origin https://github.com/naresh9000/terraform-aws-devops-elb.git
+git tag 1.0.0
+git push --tags
+----------
+repoName->terraform-aws-devops-sg
+git remote add origin https://github.com/naresh9000/terraform-aws-devops-sg.git
+git tag 1.0.0
+git push --tags
+-------------
+repoName->terraform-aws-devops-route53
+git remote add origin https://github.com/naresh9000/terraform-aws-devops-route53.git
+git tag 1.0.0
+git push --tags
+------------
+repoName->terraform-aws-devops-nat
+git remote add origin https://github.com/naresh9000/terraform-aws-devops-nat.git
+git tag 1.0.0
+git push --tags
+-------------
+repoName->terraform-aws-devops-iam
+git remote add origin https://github.com/naresh9000/terraform-aws-devops-iam.git
+git tag 1.0.0
+git push --tags
+-----------------------
+Now publish the each modules...
+
+6)create the terraform-enterprise workspace  and link the repo as shown below
+https://github.com/naresh9000/terraform-aws-devops-terraform-enterprise.git
+
+
+7)Add the access and secret keys as variables
+Integrate the slack notification or email notifications or webhook Triggered under the workspace->Notifications
+for to know the what events are triggred.
+
+Auto-apply run triggers:ON
+
+8)click on the New Run ->plan and apply
+check slack noftifications and email notifications
+
