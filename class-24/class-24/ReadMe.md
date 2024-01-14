@@ -1,4 +1,7 @@
 # Modules
+
+Please go through the link below for multiple environment modules re-usability and module high level design.
+https://blog.gruntwork.io/how-to-create-reusable-infrastructure-with-terraform-modules-25526d65f73d
 modules are a way to organize and reuse Terraform configurations,Encapsulation,Reuse,Input and Output Variables,Versioning
 
 
